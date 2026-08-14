@@ -1,0 +1,986 @@
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Engineer Portfolio | Futurista & Minimalista</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      defer
+      src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+      :root {
+        --neon-cyan: #00f0ff;
+        --neon-purple: #bc00ff;
+        --dark-bg: #050505;
+        --card-bg: rgba(15, 15, 15, 0.8);
+      }
+
+      body {
+        background-color: var(--dark-bg);
+        color: #e5e5e5;
+        font-family: "Inter", sans-serif;
+        overflow-x: hidden;
+      }
+
+      h1,
+      h2,
+      h3,
+      .font-space {
+        font-family: "Space Grotesk", sans-serif;
+      }
+
+      .glow-cyan {
+        text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+      }
+      .glow-purple {
+        text-shadow: 0 0 10px rgba(188, 0, 255, 0.5);
+      }
+
+      .bg-grid {
+        background-size: 50px 50px;
+        background-image:
+          linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.05) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.05) 1px,
+            transparent 1px
+          );
+      }
+
+      .glass {
+        background: var(--card-bg);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .cyber-border {
+        position: relative;
+        border: 1px solid rgba(0, 240, 255, 0.3);
+      }
+      .cyber-border::before {
+        content: "";
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        width: 10px;
+        height: 10px;
+        border-top: 2px solid var(--neon-cyan);
+        border-left: 2px solid var(--neon-cyan);
+      }
+      .cyber-border::after {
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        right: -1px;
+        width: 10px;
+        height: 10px;
+        border-bottom: 2px solid var(--neon-cyan);
+        border-right: 2px solid var(--neon-cyan);
+      }
+
+      .animate-float {
+        animation: float 6s ease-in-out infinite;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      /* SVG Flow dots animation */
+      @keyframes flow {
+        from {
+          offset-distance: 0%;
+        }
+        to {
+          offset-distance: 100%;
+        }
+      }
+      .flow-dot {
+        animation: flow 3s linear infinite;
+        offset-rotate: auto;
+      }
+      .flow-dot-fast {
+        animation: flow 1.6s linear infinite;
+      }
+
+      .gradient-text {
+        background: linear-gradient(
+          90deg,
+          var(--neon-cyan),
+          var(--neon-purple)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .service-card:hover .service-icon {
+        transform: scale(1.1) rotate(5deg);
+        color: var(--neon-cyan);
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--dark-bg);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #333;
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--neon-cyan);
+      }
+    </style>
+  </head>
+  <body x-data="{ data: portfolioData, menuOpen: false }">
+    <!-- Background Decoration -->
+    <div class="fixed inset-0 z-[-1] opacity-20 bg-grid"></div>
+
+    <!-- Flowing Dots Background Animation -->
+    <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
+      <canvas id="dotsCanvas" class="w-full h-full"></canvas>
+    </div>
+    <div
+      class="fixed top-[-10%] right-[-10%] w-[500px] h-[500px] bg-cyan-500/20 rounded-full blur-[120px]"
+    ></div>
+    <div
+      class="fixed bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-purple-500/20 rounded-full blur-[120px]"
+    ></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass border-b border-white/5">
+      <div
+        class="max-w-7-xl mx-auto px-6 h-20 flex items-center justify-between"
+      >
+        <div class="flex items-center gap-2">
+          <div
+            class="w-12 h-12 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-lg flex items-center justify-center font-bold text-black"
+          >
+            JL
+          </div>
+          <span
+            class="text-xl font-bold tracking-tighter font-space gradient-text"
+            x-text="data.personalInfo.nombre"
+          ></span>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div
+          class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide"
+        >
+          <a
+            href="#inicio"
+            class="px-5 py-2 cyber-border hover:bg-cyan-400/10 transition-all text-cyan-400 font-bold"
+            >INICIO</a
+          >
+          <a
+            href="#servicios"
+            class="px-5 py-2 cyber-border hover:bg-cyan-400/10 transition-all text-cyan-400 font-bold"
+            >SERVICIOS</a
+          >
+          <a
+            href="#caso-exito"
+            class="px-5 py-2 cyber-border hover:bg-cyan-400/10 transition-all text-cyan-400 font-bold"
+            >ÉXITO</a
+          >
+
+          <a
+            :href="data.personalInfo.linkedin_url"
+            target="_blank"
+            class="px-5 py-2 cyber-border hover:bg-cyan-400/10 transition-all text-cyan-400 font-bold"
+          >
+            <i data-lucide="linkedin" class="w-5 h-5"></i>
+            <span>LINKEDIN</span>
+          </a>
+          <a
+            :href="data.personalInfo.github_url"
+            target="_blank"
+            class="px-5 py-2 cyber-border hover:bg-cyan-400/10 transition-all text-cyan-400 font-bold"
+          >
+            <i data-lucide="github" class="w-5 h-5"></i>
+            <span>GITHUB</span>
+          </a>
+
+          <a
+            href="#contacto"
+            class="px-5 py-2 cyber-border hover:bg-cyan-400/10 transition-all text-cyan-400 font-bold"
+            >WhatsApp</a
+          >
+        </div>
+
+        <!-- Mobile Toggle -->
+        <button @click="menuOpen = !menuOpen" class="md:hidden text-white">
+          <i data-lucide="menu" x-show="!menuOpen"></i>
+          <i data-lucide="x" x-show="menuOpen"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        x-show="menuOpen"
+        class="md:hidden glass border-t border-white/10 p-6 space-y-4"
+        x-transition
+      >
+        <a @click="menuOpen = false" href="#inicio" class="block py-2"
+          >Inicio</a
+        >
+        <a @click="menuOpen = false" href="#servicios" class="block py-2"
+          >Servicios</a
+        >
+        <a @click="menuOpen = false" href="#caso-exito" class="block py-2"
+          >Éxito</a
+        >
+        <a
+          @click="menuOpen = false"
+          href="#contacto"
+          class="block py-2 text-cyan-400 font-bold"
+          >Reserva Cita</a
+        >
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="pt-40 pb-20 px-6 max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-12 gap-12 items-center">
+        <div class="md:col-span-7 space-y-8">
+          <div
+            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-400/10 border border-cyan-400/20 text-cyan-400 text-xs font-bold tracking-widest uppercase"
+          >
+            <span class="relative flex h-2 w-2">
+              <span
+                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"
+              ></span>
+              <span
+                class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"
+              ></span>
+            </span>
+            Disponible para Proyectos de Impacto
+          </div>
+          <h1
+            class="text-4xl md:text-6xl font-bold leading-tight font-space"
+            x-text="data.hero.titulo"
+          ></h1>
+          <p
+            class="text-xl text-cyan-400 font-medium italic"
+            x-text="data.hero.pregunta"
+          ></p>
+          <p
+            class="text-gray-400 text-lg leading-relaxed max-w-2xl"
+            x-text="data.hero.descripcion"
+          ></p>
+
+          <div class="flex flex-wrap gap-4 pt-4">
+            <a
+              href="#contacto"
+              class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-none font-bold text-black hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-all transform hover:-translate-y-1"
+            >
+              EMPEZAR AHORA
+            </a>
+            <a
+              href="#servicios"
+              class="px-8 py-4 border border-white/20 hover:border-cyan-400/50 transition-all font-bold"
+            >
+              VER SERVICIOS
+            </a>
+          </div>
+        </div>
+
+        <div class="md:col-span-5 relative hidden md:block">
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full blur-[80px] animate-pulse"
+          ></div>
+          <div class="relative z-10 glass p-8 cyber-border animate-float">
+            <div class="space-y-6">
+              <div
+                class="flex justify-between items-center border-b border-white/10 pb-4"
+              >
+                <span class="text-xs font-mono text-cyan-400"
+                  >STATUS: OPTIMIZED</span
+                >
+                <span class="text-xs font-mono text-gray-500">v2.4.0</span>
+              </div>
+              <div class="diagram-box">
+                <svg
+                  viewBox="0 0 460 420"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  role="img"
+                  aria-label="Diagrama de flujo de datos desde seguros, salud, banca y manufactura hacia un pipeline central y decisiones de negocio"
+                >
+                  <!-- connecting paths -->
+                  <path
+                    id="p1"
+                    d="M110 60 C 190 60, 190 190, 230 200"
+                    stroke="#D8D4C8"
+                    stroke-width="1.5"
+                    fill="none"
+                  ></path>
+                  <path
+                    id="p2"
+                    d="M110 150 C 170 150, 190 190, 230 205"
+                    stroke="#D8D4C8"
+                    stroke-width="1.5"
+                    fill="none"
+                  ></path>
+                  <path
+                    id="p3"
+                    d="M110 270 C 170 270, 190 220, 230 210"
+                    stroke="#D8D4C8"
+                    stroke-width="1.5"
+                    fill="none"
+                  ></path>
+                  <path
+                    id="p4"
+                    d="M110 360 C 190 360, 190 230, 230 215"
+                    stroke="#D8D4C8"
+                    stroke-width="1.5"
+                    fill="none"
+                  ></path>
+                  <path
+                    id="p5"
+                    d="M300 208 C 340 208, 340 208, 380 208"
+                    stroke="#C97A3D"
+                    stroke-width="2"
+                    fill="none"
+                  ></path>
+
+                  <!-- source nodes -->
+                  <g>
+                    <rect
+                      x="25"
+                      y="32"
+                      width="100"
+                      height="56"
+                      rx="8"
+                      fill="#FFFFFF"
+                      stroke="#D8D4C8"
+                      stroke-width="1.5"
+                    ></rect>
+                    <text
+                      x="75"
+                      y="65"
+                      text-anchor="middle"
+                      font-family="Space Grotesk, sans-serif"
+                      font-weight="500"
+                      font-size="13"
+                      fill="#0E1B2B"
+                    >
+                      Seguros
+                    </text>
+                  </g>
+                  <g>
+                    <rect
+                      x="25"
+                      y="122"
+                      width="100"
+                      height="56"
+                      rx="8"
+                      fill="#FFFFFF"
+                      stroke="#D8D4C8"
+                      stroke-width="1.5"
+                    ></rect>
+                    <text
+                      x="75"
+                      y="155"
+                      text-anchor="middle"
+                      font-family="Space Grotesk, sans-serif"
+                      font-weight="500"
+                      font-size="13"
+                      fill="#0E1B2B"
+                    >
+                      Salud
+                    </text>
+                  </g>
+                  <g>
+                    <rect
+                      x="25"
+                      y="242"
+                      width="100"
+                      height="56"
+                      rx="8"
+                      fill="#FFFFFF"
+                      stroke="#D8D4C8"
+                      stroke-width="1.5"
+                    ></rect>
+                    <text
+                      x="75"
+                      y="275"
+                      text-anchor="middle"
+                      font-family="Space Grotesk, sans-serif"
+                      font-weight="500"
+                      font-size="13"
+                      fill="#0E1B2B"
+                    >
+                      Sector Público
+                    </text>
+                  </g>
+                  <g>
+                    <rect
+                      x="25"
+                      y="332"
+                      width="100"
+                      height="56"
+                      rx="8"
+                      fill="#FFFFFF"
+                      stroke="#D8D4C8"
+                      stroke-width="1.5"
+                    ></rect>
+                    <text
+                      x="75"
+                      y="365"
+                      text-anchor="middle"
+                      font-family="Space Grotesk, sans-serif"
+                      font-weight="500"
+                      font-size="13"
+                      fill="#0E1B2B"
+                    >
+                      Manufactura
+                    </text>
+                  </g>
+
+                  <!-- pipeline node -->
+                  <rect
+                    x="230"
+                    y="176"
+                    width="150"
+                    height="64"
+                    rx="10"
+                    fill="#0E1B2B"
+                  ></rect>
+                  <text
+                    x="305"
+                    y="203"
+                    text-anchor="middle"
+                    font-family="Space Grotesk, sans-serif"
+                    font-weight="700"
+                    font-size="13"
+                    fill="#F6F5F1"
+                  >
+                    Pipeline
+                  </text>
+                  <text
+                    x="305"
+                    y="221"
+                    text-anchor="middle"
+                    font-family="JetBrains Mono, monospace"
+                    font-size="9.5"
+                    fill="#1FA98A"
+                  >
+                    Databricks · PySpark
+                  </text>
+
+                  <!-- outcome node -->
+                  <rect
+                    x="380"
+                    y="180"
+                    width="70"
+                    height="56"
+                    rx="8"
+                    fill="#FFFFFF"
+                    stroke="#1FA98A"
+                    stroke-width="1.5"
+                  ></rect>
+                  <text
+                    x="415"
+                    y="203"
+                    text-anchor="middle"
+                    font-family="Space Grotesk, sans-serif"
+                    font-weight="700"
+                    font-size="12"
+                    fill="#0E1B2B"
+                  >
+                    KPI
+                  </text>
+                  <text
+                    x="415"
+                    y="218"
+                    text-anchor="middle"
+                    font-family="JetBrains Mono, monospace"
+                    font-size="9"
+                    fill="#64748B"
+                  >
+                    decisión
+                  </text>
+
+                  <!-- flowing dots -->
+                  <circle
+                    class="flow-dot"
+                    r="4"
+                    fill="#1FA98A"
+                    style="
+                      offset-path: path(
+                        &quot;M110 60 C 190 60, 190 190, 230 200&quot;
+                      );
+                    "
+                  ></circle>
+
+                  <circle
+                    class="flow-dot"
+                    r="4"
+                    fill="#1FA98A"
+                    style="
+                      offset-path: path(
+                        &quot;M110 150 C 170 150, 190 190, 230 205&quot;
+                      );
+                      animation-delay: 0.8s;
+                    "
+                  ></circle>
+
+                  <circle
+                    class="flow-dot"
+                    r="4"
+                    fill="#1FA98A"
+                    style="
+                      offset-path: path(
+                        &quot;M110 270 C 170 270, 190 220, 230 210&quot;
+                      );
+                      animation-delay: 1.6s;
+                    "
+                  ></circle>
+
+                  <circle
+                    class="flow-dot"
+                    r="4"
+                    fill="#1FA98A"
+                    style="
+                      offset-path: path(
+                        &quot;M110 360 C 190 360, 190 230, 230 215&quot;
+                      );
+                      animation-delay: 2.4s;
+                    "
+                  ></circle>
+
+                  <!-- Pipeline → KPI -->
+                  <circle
+                    class="flow-dot flow-dot-fast"
+                    r="4.5"
+                    fill="#C97A3D"
+                    style="
+                      offset-path: path(
+                        &quot;M300 208 C 340 208, 340 208, 380 208&quot;
+                      );
+                    "
+                  ></circle>
+                </svg>
+              </div>
+              <div class="pt-4 border-t border-white/10">
+                <div class="h-1 bg-gray-800 w-full overflow-hidden">
+                  <div
+                    class="h-full bg-cyan-500 animate-[loading_2s_ease-in-out_infinite]"
+                    style="width: 40%"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Metrics Grid -->
+    <section class="py-20 border-y border-white/5 bg-white/5">
+      <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
+        <template x-for="stat in data.metricas">
+          <div class="text-center space-y-2">
+            <div
+              class="text-3xl md:text-5xl font-bold font-space gradient-text"
+              x-text="stat.valor"
+            ></div>
+            <div
+              class="text-xs text-gray-500 uppercase tracking-widest leading-tight"
+              x-text="stat.descripcion"
+            ></div>
+          </div>
+        </template>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="servicios" class="py-32 px-6 max-w-7xl mx-auto">
+      <div class="text-center mb-20 space-y-4">
+        <h2 class="text-sm font-mono text-cyan-400 tracking-[0.3em] uppercase">
+          Architecture & Engineering
+        </h2>
+        <p class="text-4xl md:text-5xl font-bold font-space">
+          Soluciones de Datos Modernas
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <template x-for="service in data.servicios" :key="service.id">
+          <div
+            class="service-card group glass p-8 cyber-border flex flex-col justify-between hover:bg-white/[0.03] transition-all duration-500"
+          >
+            <div class="space-y-6">
+              <div class="flex justify-between items-start">
+                <div
+                  class="service-icon w-12 h-12 flex items-center justify-center bg-cyan-400/10 rounded-lg transition-transform"
+                >
+                  <i
+                    :data-lucide="service.icono === 'CpuChip' ? 'cpu' : (service.icono === 'Server' ? 'database' : 'terminal')"
+                    class="text-cyan-400 w-6 h-6"
+                  ></i>
+                </div>
+                <span
+                  class="text-4xl font-black text-white/5 group-hover:text-cyan-400/10 transition-colors"
+                  x-text="service.numero"
+                ></span>
+              </div>
+              <div>
+                <span
+                  class="text-[10px] font-bold text-cyan-400 uppercase tracking-widest mb-2 block"
+                  x-text="service.tipo"
+                ></span>
+                <h3
+                  class="text-2xl font-bold font-space mb-4"
+                  x-text="service.nombre"
+                ></h3>
+                <p
+                  class="text-gray-400 text-sm leading-relaxed mb-6"
+                  x-text="service.descripcion"
+                ></p>
+              </div>
+              <ul class="space-y-3 text-xs text-gray-300">
+                <template x-for="item in service.entregables">
+                  <li class="flex items-start gap-3">
+                    <i
+                      data-lucide="check-circle"
+                      class="w-4 h-4 text-cyan-500 shrink-0"
+                    ></i>
+                    <span x-text="item"></span>
+                  </li>
+                </template>
+              </ul>
+            </div>
+            <div
+              class="mt-10 pt-6 border-t border-white/10 flex justify-between items-center"
+            >
+              <span
+                class="text-xs font-mono text-gray-500 uppercase tracking-tighter"
+                x-text="service.precio"
+              ></span>
+              <a
+                :href="'#contacto'"
+                class="p-2 rounded-full hover:bg-cyan-400/20 transition-colors text-cyan-400"
+              >
+                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+              </a>
+            </div>
+          </div>
+        </template>
+      </div>
+    </section>
+
+    <!-- Success Case -->
+    <section id="caso-exito" class="py-32 bg-white/5 relative overflow-hidden">
+      <div
+        class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-cyan-500/5 to-transparent"
+      ></div>
+      <div class="max-w-7xl mx-auto px-6 relative z-10">
+        <div class="text-center mb-20 space-y-4">
+          <h2
+            class="text-sm font-mono text-purple-400 tracking-[0.3em] uppercase"
+          >
+            Case Study: Success Story
+          </h2>
+          <p
+            class="text-4xl md:text-5xl font-bold font-space"
+            x-text="data.casoExito.titulo"
+          ></p>
+        </div>
+
+        <div class="grid md:grid-cols-12 gap-12 items-start">
+          <!-- Columna de Texto -->
+          <div class="md:col-span-7 space-y-8">
+            <div class="space-y-6">
+              <div class="p-8 bg-black/40 border-l-4 border-cyan-500 glass">
+                <p class="text-sm text-gray-400 uppercase font-bold mb-2">
+                  El Reto
+                </p>
+                <p
+                  class="text-gray-300 leading-relaxed"
+                  x-text="data.casoExito.reto"
+                ></p>
+              </div>
+              <div class="p-8 bg-black/40 border-l-4 border-purple-500 glass">
+                <p class="text-sm text-gray-400 uppercase font-bold mb-2">
+                  La Solución
+                </p>
+                <p
+                  class="text-gray-300 leading-relaxed"
+                  x-text="data.casoExito.solucion"
+                ></p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+              <template x-for="result in data.casoExito.resultados">
+                <div
+                  class="p-6 glass cyber-border flex flex-col justify-center items-center text-center group hover:bg-cyan-500/5 transition-all"
+                >
+                  <div
+                    class="text-3xl font-bold font-space text-cyan-400 mb-1 group-hover:glow-cyan transition-all"
+                    x-text="result.valor"
+                  ></div>
+                  <p
+                    class="text-[10px] text-gray-500 uppercase tracking-widest leading-tight"
+                    x-text="result.descripcion"
+                  ></p>
+                </div>
+              </template>
+            </div>
+          </div>
+
+          <!-- Columna de Imagen -->
+          <div class="md:col-span-5">
+            <div class="relative group">
+              <div
+                class="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"
+              ></div>
+              <div
+                class="relative glass rounded-lg overflow-hidden border border-white/10"
+              >
+                <img
+                  :src="data.casoExito.imagen1"
+                  alt="Caso Familia"
+                  class="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700 transform hover:scale-105"
+                />
+                <img
+                  :src="data.casoExito.imagen2"
+                  alt="Caso Familia"
+                  class="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700 transform hover:scale-105"
+                />
+                                <img
+                  :src="data.casoExito.imagen3"
+                  alt="Caso Familia"
+                  class="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700 transform hover:scale-105"
+                />
+                <div
+                  class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/80 to-transparent"
+                >
+                  <p
+                    class="text-xs font-mono text-cyan-400 tracking-widest uppercase"
+                  >
+                    Success Case Visual Desicion
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA / Contact -->
+    <section id="contacto" class="py-40 px-6 text-center max-w-4xl mx-auto">
+      <div class="space-y-12">
+        <h2
+          class="text-5xl md:text-7xl font-bold font-space tracking-tight"
+          x-text="data.cta.titulo"
+        ></h2>
+        <p
+          class="text-xl text-gray-400 max-w-2xl mx-auto"
+          x-text="data.cta.descripcion"
+        ></p>
+        <div class="p-8 glass border border-cyan-400/30 inline-block w-full">
+          <p class="text-lg mb-8" x-text="data.cta.subdescripcion"></p>
+          <div class="flex flex-col md:flex-row gap-4 justify-center">
+            <a
+              :href="data.personalInfo.calendario_url"
+              target="_blank"
+              class="px-10 py-5 bg-cyan-500 text-black font-bold text-lg hover:bg-cyan-400 transition-all shadow-[0_0_30px_rgba(0,240,255,0.3)]"
+            >
+              <span x-text="data.cta.texto_boton"></span>
+            </a>
+            <a
+              :href="'mailto:' + data.personalInfo.correo"
+              class="px-10 py-5 border border-white/20 hover:border-white/50 transition-all font-bold text-lg"
+            >
+              Contactar por Email
+            </a>
+          </div>
+        </div>
+
+        <div class="flex justify-center gap-8 pt-10">
+          <!-- Redes sociales movidas a la parte superior -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer
+      class="py-10 border-t border-white/5 text-center text-gray-600 text-xs tracking-widest uppercase"
+    >
+      <p>
+        ©2026 <span x-text="data.personalInfo.nombre"></span> // Data
+        Infrastructure for the Future
+      </p>
+    </footer>
+    z
+    <!-- Customizer Panel Button -->
+    <button
+      @click="document.getElementById('customizer').classList.toggle('translate-x-full')"
+      class="fixed bottom-10 right-10 z-[100] w-14 h-14 bg-purple-600 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-purple-500 transition-all"
+    >
+      <i data-lucide="settings"></i>
+    </button>
+
+    <!-- Customizer Panel -->
+    <div
+      id="customizer"
+      class="fixed top-0 right-0 w-full md:w-[500px] h-full glass z-[110] transition-transform translate-x-full shadow-2xl p-10 overflow-y-auto"
+    >
+      <div class="flex justify-between items-center mb-8">
+        <h2 class="text-2xl font-bold font-space gradient-text">
+          Panel de Personalización
+        </h2>
+        <button
+          @click="document.getElementById('customizer').classList.add('translate-x-full')"
+          class="text-gray-400 hover:text-white"
+        >
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <p class="text-sm text-gray-400 mb-8">
+        Modifica los campos a continuación para ver los cambios en tiempo real.
+        Para guardar permanentemente, actualiza el archivo
+        <b>portfolio-data.js</b>.
+      </p>
+
+      <div class="space-y-6">
+        <div>
+          <label class="text-xs font-bold text-cyan-400 uppercase block mb-2"
+            >Nombre / Marca</label
+          >
+          <input
+            type="text"
+            x-model="data.personalInfo.nombre"
+            class="w-full bg-white/5 border border-white/10 p-3 text-white focus:border-cyan-500 outline-none"
+          />
+        </div>
+        <div>
+          <label class="text-xs font-bold text-cyan-400 uppercase block mb-2"
+            >Título Hero</label
+          >
+          <textarea
+            x-model="data.hero.titulo"
+            rows="3"
+            class="w-full bg-white/5 border border-white/10 p-3 text-white focus:border-cyan-500 outline-none"
+          ></textarea>
+        </div>
+        <div>
+          <label class="text-xs font-bold text-cyan-400 uppercase block mb-2"
+            >Correo de Contacto</label
+          >
+          <input
+            type="text"
+            x-model="data.personalInfo.correo"
+            class="w-full bg-white/5 border border-white/10 p-3 text-white focus:border-cyan-500 outline-none"
+          />
+        </div>
+
+        <div class="pt-6 border-t border-white/10">
+          <p class="text-xs font-bold text-purple-400 uppercase mb-4">
+            Exportar Cambios
+          </p>
+          <button
+            @click="console.log(JSON.stringify(data, null, 2)); alert('Copia el JSON de la consola (F12) para actualizar tu archivo portfolio-data.js')"
+            class="w-full py-4 bg-purple-600 font-bold hover:bg-purple-500 transition-colors"
+          >
+            GENERAR JSON DE CONFIGURACIÓN
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Script to load and initialize icons and background animation -->
+    <script src="./portfolio-data.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        lucide.createIcons();
+
+        // Flowing Dots Background Animation
+        const canvas = document.getElementById("dotsCanvas");
+        const ctx = canvas.getContext("2d");
+        let particles = [];
+        const particleCount = 60;
+
+        function resize() {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener("resize", resize);
+        resize();
+
+        class Particle {
+          constructor() {
+            this.init();
+          }
+
+          init() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.vx = (Math.random() - 0.5) * 0.5;
+            this.vy = (Math.random() - 0.5) * 0.5;
+            this.size = Math.random() * 2 + 1;
+            this.color = Math.random() > 0.5 ? "#00f0ff" : "#bc00ff";
+            this.alpha = Math.random() * 0.5 + 0.1;
+          }
+
+          update() {
+            this.x += this.vx;
+            this.y += this.vy;
+
+            if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+            if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+          }
+
+          draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = this.color;
+            ctx.globalAlpha = this.alpha;
+            ctx.fill();
+          }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+          particles.push(new Particle());
+        }
+
+        function animate() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          particles.forEach((p) => {
+            p.update();
+            p.draw();
+          });
+          requestAnimationFrame(animate);
+        }
+
+        animate();
+      });
+    </script>
+  </body>
+</html>
