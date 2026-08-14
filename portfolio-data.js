@@ -8,6 +8,7 @@ const portfolioData = {
     titulo_profesional: "Data Architect & Engineer",
     correo: "contacto@tuempresa.com",
     calendario_url: "https://wa.link/6m83en",
+    whatsApp: "https://wa.link/6m83en",
     linkedin_url:
       "https://www.linkedin.com/in/jose-hernando-l%C3%B3pez-trejos-599b49335/",
     github_url: "https://github.com/kotaErn650",
@@ -161,6 +162,6 @@ const portfolioData = {
       "No dejes que los datos lentos o desorganizados frenen el crecimiento de tu empresa ni sigan drenando tu presupuesto.",
     subdescripcion:
       "Agenda una Sesión Estratégica gratuita de 15 minutos para analizar tu arquitectura actual y descubrir dónde se encuentran tus mayores oportunidades de ahorro y optimización.",
-    texto_boton: "Escribeme con todo gusto!!",
+    texto_boton: "📲 Escribeme con todo gusto!",
   },
 };

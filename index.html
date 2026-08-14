@@ -225,7 +225,7 @@
           <a
             href="#contacto"
             class="px-5 py-2 cyber-border hover:bg-cyan-400/10 transition-all text-cyan-400 font-bold"
-            >WhatsApp</a
+            >WhatsAppP</a
           >
         </div>
 
@@ -240,8 +240,7 @@
       <div
         x-show="menuOpen"
         class="md:hidden glass border-t border-white/10 p-6 space-y-4"
-        x-transition
-      >
+        x-transition>
         <a @click="menuOpen = false" href="#inicio" class="block py-2"
           >Inicio</a
         >
@@ -249,14 +248,18 @@
           >Servicios</a
         >
         <a @click="menuOpen = false" href="#caso-exito" class="block py-2"
-          >Éxito</a
+          >Caso Éxito</a
         >
+        <a @click="menuOpen = false"
+        :href="data.personalInfo.linkedin_url"
+        class="block py-2 text-cyan-400 font-bold">
+        Linken</a>
+
         <a
           @click="menuOpen = false"
-          href="#contacto"
+          :href="data.personalInfo.whatsApp"
           class="block py-2 text-cyan-400 font-bold"
-          >Reserva Cita</a
-        >
+        >WhatsAppP</a>
       </div>
     </nav>
 
@@ -807,7 +810,7 @@
           <p class="text-lg mb-8" x-text="data.cta.subdescripcion"></p>
           <div class="flex flex-col md:flex-row gap-4 justify-center">
             <a
-              :href="data.personalInfo.calendario_url"
+              :href="data.personalInfo.whatsApp"
               target="_blank"
               class="px-10 py-5 bg-cyan-500 text-black font-bold text-lg hover:bg-cyan-400 transition-all shadow-[0_0_30px_rgba(0,240,255,0.3)]"
             >
@@ -837,81 +840,7 @@
         Infrastructure for the Future
       </p>
     </footer>
-    z
-    <!-- Customizer Panel Button -->
-    <button
-      @click="document.getElementById('customizer').classList.toggle('translate-x-full')"
-      class="fixed bottom-10 right-10 z-[100] w-14 h-14 bg-purple-600 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-purple-500 transition-all"
-    >
-      <i data-lucide="settings"></i>
-    </button>
-
-    <!-- Customizer Panel -->
-    <div
-      id="customizer"
-      class="fixed top-0 right-0 w-full md:w-[500px] h-full glass z-[110] transition-transform translate-x-full shadow-2xl p-10 overflow-y-auto"
-    >
-      <div class="flex justify-between items-center mb-8">
-        <h2 class="text-2xl font-bold font-space gradient-text">
-          Panel de Personalización
-        </h2>
-        <button
-          @click="document.getElementById('customizer').classList.add('translate-x-full')"
-          class="text-gray-400 hover:text-white"
-        >
-          <i data-lucide="x"></i>
-        </button>
-      </div>
-      <p class="text-sm text-gray-400 mb-8">
-        Modifica los campos a continuación para ver los cambios en tiempo real.
-        Para guardar permanentemente, actualiza el archivo
-        <b>portfolio-data.js</b>.
-      </p>
-
-      <div class="space-y-6">
-        <div>
-          <label class="text-xs font-bold text-cyan-400 uppercase block mb-2"
-            >Nombre / Marca</label
-          >
-          <input
-            type="text"
-            x-model="data.personalInfo.nombre"
-            class="w-full bg-white/5 border border-white/10 p-3 text-white focus:border-cyan-500 outline-none"
-          />
-        </div>
-        <div>
-          <label class="text-xs font-bold text-cyan-400 uppercase block mb-2"
-            >Título Hero</label
-          >
-          <textarea
-            x-model="data.hero.titulo"
-            rows="3"
-            class="w-full bg-white/5 border border-white/10 p-3 text-white focus:border-cyan-500 outline-none"
-          ></textarea>
-        </div>
-        <div>
-          <label class="text-xs font-bold text-cyan-400 uppercase block mb-2"
-            >Correo de Contacto</label
-          >
-          <input
-            type="text"
-            x-model="data.personalInfo.correo"
-            class="w-full bg-white/5 border border-white/10 p-3 text-white focus:border-cyan-500 outline-none"
-          />
-        </div>
-
-        <div class="pt-6 border-t border-white/10">
-          <p class="text-xs font-bold text-purple-400 uppercase mb-4">
-            Exportar Cambios
-          </p>
-          <button
-            @click="console.log(JSON.stringify(data, null, 2)); alert('Copia el JSON de la consola (F12) para actualizar tu archivo portfolio-data.js')"
-            class="w-full py-4 bg-purple-600 font-bold hover:bg-purple-500 transition-colors"
-          >
-            GENERAR JSON DE CONFIGURACIÓN
-          </button>
-        </div>
-      </div>
+    
     </div>
 
     <!-- Script to load and initialize icons and background animation -->
