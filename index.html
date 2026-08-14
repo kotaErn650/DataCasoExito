@@ -241,25 +241,25 @@
         x-show="menuOpen"
         class="md:hidden glass border-t border-white/10 p-6 space-y-4"
         x-transition>
-        <a @click="menuOpen = false" href="#inicio" class="block py-2"
+        <a @click="menuOpen = false" href="#inicio" class="block py-2 text-cyan-400 font-bold"
           >Inicio</a
         >
-        <a @click="menuOpen = false" href="#servicios" class="block py-2"
+        <a @click="menuOpen = false" href="#servicios" class="block py-2 text-cyan-400 font-bold"
           >Servicios</a
         >
-        <a @click="menuOpen = false" href="#caso-exito" class="block py-2"
+        <a @click="menuOpen = false" href="#caso-exito" class="block py-2 text-cyan-400 font-bold"
           >Caso Éxito</a
         >
         <a @click="menuOpen = false"
         :href="data.personalInfo.linkedin_url"
         class="block py-2 text-cyan-400 font-bold">
-        Linken</a>
+        LinkedIn</a>
 
         <a
           @click="menuOpen = false"
           :href="data.personalInfo.whatsApp"
           class="block py-2 text-cyan-400 font-bold"
-        >WhatsAppP</a>
+        >WhatsApp</a>
       </div>
     </nav>
 
