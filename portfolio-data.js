@@ -8,7 +8,7 @@ const portfolioData = {
     titulo_profesional: "Data Architect & Engineer",
     correo: "contacto@tuempresa.com",
     calendario_url: "https://wa.link/6m83en",
-    whatsApp: "https://wa.link/6m83en",
+    whatsApp: "wa.link/h5y7xk",
     linkedin_url:
       "https://www.linkedin.com/in/jose-hernando-l%C3%B3pez-trejos-599b49335/",
     github_url: "https://github.com/kotaErn650",
