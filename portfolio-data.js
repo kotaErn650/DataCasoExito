@@ -135,7 +135,7 @@ const portfolioData = {
     titulo: "Migración y Optimización de Datos para E-commerce Multinacional",
     reto: "El Reto Una empresa de Zona Franca gestionaba información operativa proveniente de diferentes fuentes y procesos, lo que obligaba al equipo a realizar manualmente la extracción, consolidación, validación y generación de reportes. Este proceso podía tomar hasta 12 días de trabajo (aprox. 96 horas-hombre), generando reprocesos, riesgo de errores y retrasos en la disponibilidad de información para la toma de decisiones.",
     solucion:
-      "implemnatcaion de  una solución de automatización y analítica de datos utilizando SQL, Python, Power Query y Power BI. Se automatizó la extracción, transformación, validación y consolidación de la información, estableciendo procesos de ETL y conexión directa entre las fuentes de datos y Power BI para generar dashboards e indicadores. La solución redujo el tiempo de generación de los reportes de 12 días (96 horas-hombre) a aproximadamente 2 días (16,3 horas-hombre), disminuyendo el trabajo manual, los errores y los tiempos de respuesta para la toma de decisiones.",
+      "Implementacion de  una solución de automatización y analítica de datos utilizando SQL, Python, Power Query y Power BI. Se automatizó la extracción, transformación, validación y consolidación de la información, estableciendo procesos de ETL y conexión directa entre las fuentes de datos y Power BI para generar dashboards e indicadores. La solución redujo el tiempo de generación de los reportes de 12 días (96 horas-hombre) a aproximadamente 2 días (16,3 horas-hombre), disminuyendo el trabajo manual, los errores y los tiempos de respuesta para la toma de decisiones.",
     resultados: [
       {
         valor: "40% de Ahorro",
