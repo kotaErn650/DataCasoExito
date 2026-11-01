@@ -161,6 +161,6 @@ const portfolioData = {
       "No dejes que los datos lentos o desorganizados frenen el crecimiento de tu empresa ni sigan drenando tu presupuesto.",
     subdescripcion:
       "Agenda una Sesión Estratégica gratuita de 15 minutos para analizar tu arquitectura actual y descubrir dónde se encuentran tus mayores oportunidades de ahorro y optimización.",
-    texto_boton: "📲 Escribeme con todo gusto!",
+    texto_boton: "📲 Platiquemos por whatsApp!",
   },
 };
