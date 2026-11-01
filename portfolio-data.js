@@ -9,8 +9,7 @@ const portfolioData = {
     correo: "jose.lopez@datafreengineer.com",
     calendario_url: "https://wa.link/6m83en",
     whatsApp: "https://wa.link/cqvkse",
-    linkedin_url:
-      "https://www.linkedin.com/in/jose-hernando-l%C3%B3pez-trejos-599b49335/",
+    linkedin_url:"https://www.linkedin.com/in/jose-hernando-l%C3%B3pez-trejos-599b49335/",
     github_url: "https://github.com/kotaErn650",
   },
 
