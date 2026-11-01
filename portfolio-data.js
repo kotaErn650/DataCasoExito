@@ -26,7 +26,7 @@ const portfolioData = {
   // Métricas de Autoridad y Resultados
   metricas: [
     {
-      valor: "+3 Años",
+      valor: "+2 Años",
       descripcion: "Analisis, Datawarwhouse. DataLake DataSpark.",
     },
     {
