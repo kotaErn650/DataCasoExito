@@ -3,15 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Data Engineer Portfolio </title>
-    
+    <title>Data Engineer Portfolio</title>
+
     <!-- Carga del archivo de datos con versión para evitar problemas de caché -->
     <script src="./portfolio-data.js?v=11"></script>
     <script
       defer
       src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
     ></script>
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -245,28 +245,42 @@
       <div
         x-show="menuOpen"
         class="md:hidden glass border-t border-white/10 p-6 space-y-4"
-        x-transition>
-        <a @click="menuOpen = false" href="#inicio" class="block py-2 text-cyan-400 font-bold"
+        x-transition
+      >
+        <a
+          @click="menuOpen = false"
+          href="#inicio"
+          class="block py-2 text-cyan-400 font-bold"
           >Inicio</a
         >
-        <a @click="menuOpen = false" href="#servicios" class="block py-2 text-cyan-400 font-bold"
+        <a
+          @click="menuOpen = false"
+          href="#servicios"
+          class="block py-2 text-cyan-400 font-bold"
           >Servicios</a
         >
-        <a @click="menuOpen = false" href="#caso-exito" class="block py-2 text-cyan-400 font-bold"
+        <a
+          @click="menuOpen = false"
+          href="#caso-exito"
+          class="block py-2 text-cyan-400 font-bold"
           >Caso Éxito</a
         >
-        <a @click="menuOpen = false"
+        <a
+          @click="menuOpen = false"
           :href="data.personalInfo.linkedin_url"
           target="_blank"
-          class="block py-2 text-cyan-400 font-bold">
-          LinkedIn</a>
+          class="block py-2 text-cyan-400 font-bold"
+        >
+          LinkedIn</a
+        >
 
         <a
           @click="menuOpen = false"
           :href="data.personalInfo.whatsApp"
           target="_blank"
           class="block py-2 text-cyan-400 font-bold"
-        >WhatsApp</a>
+          >WhatsApp</a
+        >
       </div>
     </nav>
 
@@ -316,7 +330,9 @@
           </div>
         </div>
 
-        <div class="md:col-span-5 relative hidden md:block">
+        <div
+          class="md:col-span-5 relative block mt-10 md:mt-0 w-full max-w-lg mx-auto"
+        >
           <div
             class="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full blur-[80px] animate-pulse"
           ></div>
@@ -867,7 +883,7 @@
       x-transition:leave-end="opacity-0 scale-95"
       @keydown.escape.window="modalImg = null"
       class="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 backdrop-blur-md p-4"
-      style="display: none;"
+      style="display: none"
     >
       <!-- Botón de cierre -->
       <button
