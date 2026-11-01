@@ -159,17 +159,22 @@
   </head>
   <body x-data="{ data: portfolioData, menuOpen: false, modalImg: null }">
     <!-- Background Decoration -->
-    <div class="fixed inset-0 z-[-1] opacity-20 bg-grid"></div>
+    <div
+      class="fixed inset-0 z-[-1] opacity-20 bg-grid pointer-events-none"
+    ></div>
 
     <!-- Flowing Dots Background Animation -->
     <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
-      <canvas id="dotsCanvas" class="w-full h-full"></canvas>
+      <canvas
+        id="dotsCanvas"
+        class="w-full h-full pointer-events-none"
+      ></canvas>
     </div>
     <div
-      class="fixed top-[-10%] right-[-10%] w-[500px] h-[500px] bg-cyan-500/20 rounded-full blur-[120px]"
+      class="fixed top-[-10%] right-[-10%] w-[500px] h-[500px] bg-cyan-500/20 rounded-full blur-[120px] pointer-events-none"
     ></div>
     <div
-      class="fixed bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-purple-500/20 rounded-full blur-[120px]"
+      class="fixed bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-purple-500/20 rounded-full blur-[120px] pointer-events-none"
     ></div>
 
     <!-- Navigation -->
@@ -285,9 +290,11 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="inicio" class="pt-32 md:pt-40 pb-20 px-4 sm:px-6 max-w-7xl mx-auto">
+    <section
+      id="inicio"
+      class="pt-32 md:pt-40 pb-20 px-4 sm:px-6 max-w-7xl mx-auto"
+    >
       <div class="grid md:grid-cols-12 gap-8 md:gap-12 items-center">
-        
         <!-- Columna de Contenido Principal -->
         <div class="md:col-span-7 flex flex-col space-y-6 md:space-y-8">
           <div
@@ -320,8 +327,12 @@
           <div class="block md:hidden w-full max-w-md mx-auto my-2">
             <div class="glass p-5 cyber-border">
               <div class="space-y-4">
-                <div class="flex justify-between items-center border-b border-white/10 pb-3">
-                  <span class="text-xs font-mono text-cyan-400">ESTADO: OPTIMIZADO</span>
+                <div
+                  class="flex justify-between items-center border-b border-white/10 pb-3"
+                >
+                  <span class="text-xs font-mono text-cyan-400"
+                    >ESTADO: OPTIMIZADO</span
+                  >
                   <span class="text-xs font-mono text-gray-500">v2.4.0</span>
                 </div>
                 <div class="diagram-box">
@@ -333,47 +344,253 @@
                     class="w-full h-auto"
                     aria-label="Diagrama de flujo de datos"
                   >
-                    <path d="M110 60 C 190 60, 190 190, 230 200" stroke="#D8D4C8" stroke-width="1.5" fill="none"></path>
-                    <path d="M110 150 C 170 150, 190 190, 230 205" stroke="#D8D4C8" stroke-width="1.5" fill="none"></path>
-                    <path d="M110 270 C 170 270, 190 220, 230 210" stroke="#D8D4C8" stroke-width="1.5" fill="none"></path>
-                    <path d="M110 360 C 190 360, 190 230, 230 215" stroke="#D8D4C8" stroke-width="1.5" fill="none"></path>
-                    <path d="M300 208 C 340 208, 340 208, 380 208" stroke="#C97A3D" stroke-width="2" fill="none"></path>
+                    <path
+                      d="M110 60 C 190 60, 190 190, 230 200"
+                      stroke="#D8D4C8"
+                      stroke-width="1.5"
+                      fill="none"
+                    ></path>
+                    <path
+                      d="M110 150 C 170 150, 190 190, 230 205"
+                      stroke="#D8D4C8"
+                      stroke-width="1.5"
+                      fill="none"
+                    ></path>
+                    <path
+                      d="M110 270 C 170 270, 190 220, 230 210"
+                      stroke="#D8D4C8"
+                      stroke-width="1.5"
+                      fill="none"
+                    ></path>
+                    <path
+                      d="M110 360 C 190 360, 190 230, 230 215"
+                      stroke="#D8D4C8"
+                      stroke-width="1.5"
+                      fill="none"
+                    ></path>
+                    <path
+                      d="M300 208 C 340 208, 340 208, 380 208"
+                      stroke="#C97A3D"
+                      stroke-width="2"
+                      fill="none"
+                    ></path>
 
                     <g>
-                      <rect x="25" y="32" width="100" height="56" rx="8" fill="#FFFFFF" stroke="#D8D4C8" stroke-width="1.5"></rect>
-                      <text x="75" y="65" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="500" font-size="13" fill="#0E1B2B">Seguros</text>
+                      <rect
+                        x="25"
+                        y="32"
+                        width="100"
+                        height="56"
+                        rx="8"
+                        fill="#FFFFFF"
+                        stroke="#D8D4C8"
+                        stroke-width="1.5"
+                      ></rect>
+                      <text
+                        x="75"
+                        y="65"
+                        text-anchor="middle"
+                        font-family="Space Grotesk, sans-serif"
+                        font-weight="500"
+                        font-size="13"
+                        fill="#0E1B2B"
+                      >
+                        Seguros
+                      </text>
                     </g>
                     <g>
-                      <rect x="25" y="122" width="100" height="56" rx="8" fill="#FFFFFF" stroke="#D8D4C8" stroke-width="1.5"></rect>
-                      <text x="75" y="155" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="500" font-size="13" fill="#0E1B2B">Salud</text>
+                      <rect
+                        x="25"
+                        y="122"
+                        width="100"
+                        height="56"
+                        rx="8"
+                        fill="#FFFFFF"
+                        stroke="#D8D4C8"
+                        stroke-width="1.5"
+                      ></rect>
+                      <text
+                        x="75"
+                        y="155"
+                        text-anchor="middle"
+                        font-family="Space Grotesk, sans-serif"
+                        font-weight="500"
+                        font-size="13"
+                        fill="#0E1B2B"
+                      >
+                        Salud
+                      </text>
                     </g>
                     <g>
-                      <rect x="25" y="242" width="100" height="56" rx="8" fill="#FFFFFF" stroke="#D8D4C8" stroke-width="1.5"></rect>
-                      <text x="75" y="275" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="500" font-size="13" fill="#0E1B2B">Sector Público</text>
+                      <rect
+                        x="25"
+                        y="242"
+                        width="100"
+                        height="56"
+                        rx="8"
+                        fill="#FFFFFF"
+                        stroke="#D8D4C8"
+                        stroke-width="1.5"
+                      ></rect>
+                      <text
+                        x="75"
+                        y="275"
+                        text-anchor="middle"
+                        font-family="Space Grotesk, sans-serif"
+                        font-weight="500"
+                        font-size="13"
+                        fill="#0E1B2B"
+                      >
+                        Sector Público
+                      </text>
                     </g>
                     <g>
-                      <rect x="25" y="332" width="100" height="56" rx="8" fill="#FFFFFF" stroke="#D8D4C8" stroke-width="1.5"></rect>
-                      <text x="75" y="365" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="500" font-size="13" fill="#0E1B2B">Manufactura</text>
+                      <rect
+                        x="25"
+                        y="332"
+                        width="100"
+                        height="56"
+                        rx="8"
+                        fill="#FFFFFF"
+                        stroke="#D8D4C8"
+                        stroke-width="1.5"
+                      ></rect>
+                      <text
+                        x="75"
+                        y="365"
+                        text-anchor="middle"
+                        font-family="Space Grotesk, sans-serif"
+                        font-weight="500"
+                        font-size="13"
+                        fill="#0E1B2B"
+                      >
+                        Manufactura
+                      </text>
                     </g>
 
-                    <rect x="230" y="176" width="150" height="64" rx="10" fill="#0E1B2B"></rect>
-                    <text x="305" y="203" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="13" fill="#F6F5F1">Pipeline</text>
-                    <text x="305" y="221" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#1FA98A">Databricks · PySpark</text>
+                    <rect
+                      x="230"
+                      y="176"
+                      width="150"
+                      height="64"
+                      rx="10"
+                      fill="#0E1B2B"
+                    ></rect>
+                    <text
+                      x="305"
+                      y="203"
+                      text-anchor="middle"
+                      font-family="Space Grotesk, sans-serif"
+                      font-weight="700"
+                      font-size="13"
+                      fill="#F6F5F1"
+                    >
+                      Pipeline
+                    </text>
+                    <text
+                      x="305"
+                      y="221"
+                      text-anchor="middle"
+                      font-family="JetBrains Mono, monospace"
+                      font-size="9.5"
+                      fill="#1FA98A"
+                    >
+                      Databricks · PySpark
+                    </text>
 
-                    <rect x="380" y="180" width="70" height="56" rx="8" fill="#FFFFFF" stroke="#1FA98A" stroke-width="1.5"></rect>
-                    <text x="415" y="203" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="12" fill="#0E1B2B">KPI</text>
-                    <text x="415" y="218" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#64748B">decisión</text>
+                    <rect
+                      x="380"
+                      y="180"
+                      width="70"
+                      height="56"
+                      rx="8"
+                      fill="#FFFFFF"
+                      stroke="#1FA98A"
+                      stroke-width="1.5"
+                    ></rect>
+                    <text
+                      x="415"
+                      y="203"
+                      text-anchor="middle"
+                      font-family="Space Grotesk, sans-serif"
+                      font-weight="700"
+                      font-size="12"
+                      fill="#0E1B2B"
+                    >
+                      KPI
+                    </text>
+                    <text
+                      x="415"
+                      y="218"
+                      text-anchor="middle"
+                      font-family="JetBrains Mono, monospace"
+                      font-size="9"
+                      fill="#64748B"
+                    >
+                      decisión
+                    </text>
 
-                    <circle class="flow-dot" r="4" fill="#1FA98A" style="offset-path: path('M110 60 C 190 60, 190 190, 230 200');"></circle>
-                    <circle class="flow-dot" r="4" fill="#1FA98A" style="offset-path: path('M110 150 C 170 150, 190 190, 230 205'); animation-delay: 0.8s;"></circle>
-                    <circle class="flow-dot" r="4" fill="#1FA98A" style="offset-path: path('M110 270 C 170 270, 190 220, 230 210'); animation-delay: 1.6s;"></circle>
-                    <circle class="flow-dot" r="4" fill="#1FA98A" style="offset-path: path('M110 360 C 190 360, 190 230, 230 215'); animation-delay: 2.4s;"></circle>
-                    <circle class="flow-dot flow-dot-fast" r="4.5" fill="#C97A3D" style="offset-path: path('M300 208 C 340 208, 340 208, 380 208');"></circle>
+                    <circle
+                      class="flow-dot"
+                      r="4"
+                      fill="#1FA98A"
+                      style="
+                        offset-path: path(
+                          &quot;M110 60 C 190 60, 190 190, 230 200&quot;
+                        );
+                      "
+                    ></circle>
+                    <circle
+                      class="flow-dot"
+                      r="4"
+                      fill="#1FA98A"
+                      style="
+                        offset-path: path(
+                          &quot;M110 150 C 170 150, 190 190, 230 205&quot;
+                        );
+                        animation-delay: 0.8s;
+                      "
+                    ></circle>
+                    <circle
+                      class="flow-dot"
+                      r="4"
+                      fill="#1FA98A"
+                      style="
+                        offset-path: path(
+                          &quot;M110 270 C 170 270, 190 220, 230 210&quot;
+                        );
+                        animation-delay: 1.6s;
+                      "
+                    ></circle>
+                    <circle
+                      class="flow-dot"
+                      r="4"
+                      fill="#1FA98A"
+                      style="
+                        offset-path: path(
+                          &quot;M110 360 C 190 360, 190 230, 230 215&quot;
+                        );
+                        animation-delay: 2.4s;
+                      "
+                    ></circle>
+                    <circle
+                      class="flow-dot flow-dot-fast"
+                      r="4.5"
+                      fill="#C97A3D"
+                      style="
+                        offset-path: path(
+                          &quot;M300 208 C 340 208, 340 208, 380 208&quot;
+                        );
+                      "
+                    ></circle>
                   </svg>
                 </div>
                 <div class="pt-3 border-t border-white/10">
                   <div class="h-1 bg-gray-800 w-full overflow-hidden">
-                    <div class="h-full bg-cyan-500 animate-[loading_2s_ease-in-out_infinite]" style="width: 40%"></div>
+                    <div
+                      class="h-full bg-cyan-500 animate-[loading_2s_ease-in-out_infinite]"
+                      style="width: 40%"
+                    ></div>
                   </div>
                 </div>
               </div>
@@ -384,13 +601,13 @@
           <div class="flex flex-row w-full gap-3 pt-2">
             <a
               href="#contacto"
-              class="flex-1 text-center py-3 px-3 text-xs sm:text-sm tracking-wider bg-gradient-to-r from-cyan-500 to-blue-600 rounded-none font-bold text-black hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-all flex items-center justify-center"
+              class="flex-1 text-center py-3 px-3 text-xs sm:text-sm tracking-wider bg-gradient-to-r from-cyan-500 to-blue-600 rounded-none font-bold text-black hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-all flex items-center justify-center cursor-pointer select-none"
             >
               EMPEZAR AHORA
             </a>
             <a
               href="#servicios"
-              class="flex-1 text-center py-3 px-3 text-xs sm:text-sm tracking-wider border border-white/20 hover:border-cyan-400/50 transition-all font-bold text-gray-200 flex items-center justify-center"
+              class="flex-1 text-center py-3 px-3 text-xs sm:text-sm tracking-wider border border-white/20 hover:border-cyan-400/50 transition-all font-bold text-gray-200 flex items-center justify-center cursor-pointer select-none"
             >
               VER SERVICIOS
             </a>
@@ -681,7 +898,6 @@
             </div>
           </div>
         </div>
-
       </div>
     </section>
 
